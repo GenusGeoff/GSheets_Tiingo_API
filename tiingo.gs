@@ -46,7 +46,7 @@ function TIINGOEOD(authorization, ticker, factor, startDate, endDate, frequency)
   // GOOGLE WON'T FIX Ability to Call Built-In Functions from Custom Functions
   // SEE: https://issuetracker.google.com/issues/36752287
 
-  var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + startDate + '&endDate=' + endDate + '&resampleFreq=' + frequency + '&token=' + authorization;
+  var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + startDate + '&endDate=' + endDate + '&column=' + factor + '&resampleFreq=' + frequency + '&token=' + authorization;
 
   return retrieveData(url)[0][factor];
 }
