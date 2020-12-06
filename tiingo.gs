@@ -42,18 +42,14 @@ function dateToString(date) {
 * @param {"SPY"} ticker A ticker symbol
 * @param {"adjClose"} factor A field name from Tiingo API 
 *                            {date, open, high, low, close, volume, adjOpen, adjHigh, adjLow, adjClose, adjVolume, divCash, splitFactor}
-* @param {TEXT("2020-01-01", "YYYY-MM-DD")} startDate First record date requested
-* @param {TEXT("2020-01-02", "YYYY-MM-DD")} endDate Last record date requested
+* @param {"2020-01-01"} startDate First record date requested
+* @param {"2020-01-02"} endDate Last record date requested
 * @param {"daily"} frequency A resampling frequency {daily, weekly, monthly}
 * @returns A single data point from the Tiingo End-Of-Day API on a specific date
 * @customfunction
 */
 
 function TIINGOEOD(authorization, ticker, factor, startDate, endDate, frequency) {
-
-  // KNOWN ISSUE: Dates From Sheets Cell Require Conversion to Work, e.g. "=TEXT(date, "YYYY-MM-DD")"
-  // GOOGLE WON'T FIX Ability to Call Built-In Functions from Custom Functions
-  // SEE: https://issuetracker.google.com/issues/36752287
 
   var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + dateToString(startDate) + '&endDate=' + dateToString(endDate) + '&resampleFreq=' + frequency + '&token=' + authorization;
 
