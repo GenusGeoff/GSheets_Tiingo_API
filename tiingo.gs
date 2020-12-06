@@ -7,7 +7,7 @@
 
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 
 //  You should have received a copy of the GNU General Public License
@@ -22,6 +22,15 @@ function retrieveData(url) {
   
   // Parse JSON Formatted Data
   return JSON.parse(json);
+}
+
+function dateToString(date) {
+
+  // Helper Function to Change Input Data Type from Epoch Time to Date String
+  
+  // Convert Epoch Time to ISO 8601 Formatted Date
+  var newDate = new Date(date).toISOString().split('T')[0];
+  return newDate; 
 }
 
 /**
@@ -46,7 +55,7 @@ function TIINGOEOD(authorization, ticker, factor, startDate, endDate, frequency)
   // GOOGLE WON'T FIX Ability to Call Built-In Functions from Custom Functions
   // SEE: https://issuetracker.google.com/issues/36752287
 
-  var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + startDate + '&endDate=' + endDate + '&column=' + factor + '&resampleFreq=' + frequency + '&token=' + authorization;
+  var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + dateToString(startDate) + '&endDate=' + dateToString(endDate) + '&resampleFreq=' + frequency + '&token=' + authorization;
 
   return retrieveData(url)[0][factor];
 }
