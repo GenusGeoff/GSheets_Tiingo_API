@@ -70,7 +70,7 @@ For the latest information choices available on this API endpoint please see <a 
 
 This function queries the Tiingo Cryptocurrency Endpoing API. In the tiingo_refresh.gs version of the file, a superfluous argument is included to permit easy manual refreshing of the data. To use this functionality, first use the other code and second, create a cell reference that you can manually change the contents thus forcing a manual data refresh. Whenever you change the contents of that cell, the function will refresh the data.
 
-For the latest information choices available on this API endpoint please see <a href=https://api.tiingo.com/documentation/crypto">Tiingo Crypto API Documentation</a>
+For the latest information choices available on this API endpoint please see <a href="https://api.tiingo.com/documentation/crypto">Tiingo Crypto API Documentation</a>
 
 #### KNOWN ISSUES:
 
