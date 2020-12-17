@@ -1,5 +1,5 @@
 # GSheets_Tiingo_API
-Add-on to enable Tiingo as a Stock Quote, Foreign Exchange (FX), or CryptoCurrency (BitCoin, etc.) Quotes Provider Written in Google App Script
+Google Sheets add-on to enable Tiingo as a Stock Quote, Foreign Exchange (FX), or CryptoCurrency (BitCoin, etc.) Quotes Provider Written in Google AppScript (JavaScript)
 
 ## Tiingo End Points Covered:
 
@@ -10,7 +10,13 @@ Add-on to enable Tiingo as a Stock Quote, Foreign Exchange (FX), or CryptoCurren
 
 ## Installation
 
-// Fill This Out
+1. Create a new Google Sheet (in a Chromium-based browser, just enter sheets.new in the address bar)
+
+2. In the spreadsheet, select Tools from the Menu bar
+
+3. Select <>Code Editor from the Tools Menu
+
+4. Copy and Paste the code from the preferred .gs file from this repository over the existing code
 
 ## USAGE
 
@@ -26,18 +32,50 @@ At this time, the code is not set to iterate over an array to display the output
 
 Google Sheets requires that all of the entries be encapsulated in double-quotes (") in your function call. If you're calling a hard-coded cell then this may be omitted in favor of only the cell reference. The dates, startDate and endDate, <b> MUST BE</b> in ISO 8601 Format (YYYY-MM-DD).
 
+For the latest information choices available on this API endpoint please see <a href="https://api.tiingo.com/documentation/end-of-day">Tiingo End-of-Day (EOD) API Documentation</a>
+
 ### Intraday Investors Exchange (IEX) Endpoint
 
-// Fill This Out
+#### SYNTAX
+  =TIINGOIEX(<a href="https://www.tiingo.com/account/api/token">TIINGO_API_KEY</a>, ticker, factor, afterHours, [opt_Unused])
+
+##### Example
+  =TIINGOIEX("xxxxxxxx", "SPY", "tngoLast", "TRUE")
+
+This endpoint queries intraday quotes to get current IEX market data. Included is the ability to select whether afterHours market data is returned. In the tiingo_refresh.gs version of the file, a superfluous argument is included to permit easy manual refreshing of the data. To use this functionality, first use the other code and second, create a cell reference that you can manually change the contents thus forcing a manual data refresh. Whenever you change the contents of that cell, the function will refresh the data.
+
+For the latest information choices available on this API endpoint please see <a href="https://api.tiingo.com/documentation/iex">Tiingo IEX API Documentation</a>
 
 ### Foreign Exchange Endpoint
 
-// Fill This Out
+#### SYNTAX
+  =TIINGOFX(<a href="https://www.tiingo.com/account/api/token">TIINGO_API_KEY</a>, currencyPair, factor, [opt_Unused])
+  
+##### Example
+  =TIINGOIEX("xxxxxxxx", "EURUSD", "midPrice")
+  
+This endpoint queries the latest/top-of-book from the Tiingo Foreign Exchange API endpoint. In the tiingo_refresh.gs version of the file, a superfluous argument is included to permit easy manual refreshing of the data. To use this functionality, first use the other code and second, create a cell reference that you can manually change the contents thus forcing a manual data refresh. Whenever you change the contents of that cell, the function will refresh the data.
+
+For the latest information choices available on this API endpoint please see <a href="https://api.tiingo.com/documentation/forex">Tiingo Forex API Documentation</a>
 
 ### Top-of-Book Cryptocurrency Endpoint
 
-// Fill This Out
+#### SYNTAX
+
+  =TIINGOCRYPTO(<a href="https://www.tiingo.com/account/api/token">TIINGO_API_KEY</a>, cryptoPair, factor, [opt_Unused])
+
+##### Example
+
+  =TIINGOCRYPTO("xxxxxxxx", "BTCUSD", "lastPrice", [opt_Unused])
+
+This function queries the Tiingo Cryptocurrency Endpoing API. In the tiingo_refresh.gs version of the file, a superfluous argument is included to permit easy manual refreshing of the data. To use this functionality, first use the other code and second, create a cell reference that you can manually change the contents thus forcing a manual data refresh. Whenever you change the contents of that cell, the function will refresh the data.
+
+For the latest information choices available on this API endpoint please see <a href=https://api.tiingo.com/documentation/crypto">Tiingo Crypto API Documentation</a>
 
 #### KNOWN ISSUES:
 
-// Fill This Out
+Google Sheets does not have a built-in way to refresh API data pulls. This presents some minor inconvenience when dealing with Intraday quotes. However, I have built a janky workaround into the tiingo_refresh.gs file which creates the opt_Unused field present in brackets as "optional" in the documentation above. The easiest way to implement this workaround is to install the tiingo_refresh.gs file and then create a superfluous cell that you can simply insert a random value in or create a macro to accomplish the same.
+
+#### FUTURE DEVELOPMENT:
+
+I plan on creating the ability to pull several columns of data and output them at one time rather than only requesting a single factor at a time. It is also far more efficient to make a single query rather than a new query for each ticker requested, so that will also be on the TO DO List. Some of this functionality already exists in another example Google Sheets file from Tiingo. It is trivial to build in this functionality, and I plan on doing so as soon as I get the time.
