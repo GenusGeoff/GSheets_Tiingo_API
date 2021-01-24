@@ -1,6 +1,8 @@
 # GSheets_Tiingo_API
 Google Sheets add-on to enable Tiingo as a Stock Quote, Foreign Exchange (FX), or CryptoCurrency (BitCoin, etc.) Quotes Provider Written in Google AppScript (JavaScript)
 
+A standalone Google Finance plug-in.
+
 ## Tiingo End Points Covered:
 
 * End-of-Day Quotes
