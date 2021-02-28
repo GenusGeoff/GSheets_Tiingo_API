@@ -20,6 +20,8 @@ A standalone Google Finance plug-in.
 
 4. Copy and Paste the code from the preferred .gs file from this repository over the existing code
 
+5. Approve the Google Security prompt. No data is shared with me through this project. But, the project is 'unaudited' causing this message. 
+
 ## USAGE
 
 ### Tiingo End-of-Day Endpoint
