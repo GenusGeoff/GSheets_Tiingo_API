@@ -9,6 +9,8 @@ A standalone Google Finance plug-in.
 * Intraday Investors Exchange (IEX) Quotes
 * Foreign Exchange (FX) Quotes
 * Top-of-Book Cryptocurrency Quotes
+* News (Partial Coverage)
+* Fundamentals (Limited Partial Coverage)
 
 ## Installation
 
@@ -72,9 +74,35 @@ For the latest information choices available on this API endpoint please see <a 
 
   =TIINGOCRYPTO("xxxxxxxx", "BTCUSD", "lastPrice")
 
-This function queries the Tiingo Cryptocurrency Endpoing API. In the tiingo_refresh.gs version of the file, a superfluous argument is included to permit easy manual refreshing of the data. To use this functionality, first use the other code and second, create a cell reference that you can manually change the contents thus forcing a manual data refresh. Whenever you change the contents of that cell, the function will refresh the data.
+This function queries the Tiingo Cryptocurrency Endpoint API. In the tiingo_refresh.gs version of the file, a superfluous argument is included to permit easy manual refreshing of the data. To use this functionality, first use the other code and second, create a cell reference that you can manually change the contents thus forcing a manual data refresh. Whenever you change the contents of that cell, the function will refresh the data.
 
 For the latest information choices available on this API endpoint please see <a href="https://api.tiingo.com/documentation/crypto">Tiingo Crypto API Documentation</a>
+
+### News Endpoint
+
+#### SYNTAX
+
+  =TIINGONEWS(<a href="https://www.tiingo.com/account/api/token">TIINGO_API_KEY</a>, searchType, tickerOrKeyword, responseNumber)
+  
+##### Example
+
+  =TIINGONEWS("xxxxxxxx", "SPY", "ticker", 0)
+  
+This function queries the Tiingo News Endpoint API. The responseNumber or record number is zero-based, so the most recent news record will be 0, the next 1, etc. This is in very alpha form as of now.
+
+### Fundamentals Endpoint
+
+#### SYNTAX
+
+  =TIINGOFUNDAMENTALS(<a href="https://www.tiingo.com/account/api/token">TIINGO_API_KEY</a>, ticker, factor)
+  
+##### Example
+
+  =TIINGOFUNDAMENTALS("xxxxxxxx", "AAPL", "sector")
+  
+This function queries the Tiingo Fundamental Data Endpoint API. More information can be found at the <a href="https://api.tiingo.com/documentation/fundamentals">Tiingo Fundamentals documentation</a> page. You can also find a full list of the current factors available on the endpoint at the same location.
+
+##### FUNDAMENTALS NOTE: THIS FEATURE REQUIRES A SEPARATE LICENSING FEE FROM TIINGO.
 
 #### KNOWN ISSUES:
 
@@ -83,3 +111,6 @@ Google Sheets does not have a built-in way to refresh API data pulls. This prese
 #### FUTURE DEVELOPMENT:
 
 I plan on creating the ability to pull several columns of data and output them at one time rather than only requesting a single factor at a time. It is also far more efficient to make a single query rather than a new query for each ticker requested, so that will also be on the TO DO List. Some of this functionality already exists in another example Google Sheets file from Tiingo. It is trivial to build in this functionality, and I plan on doing so as soon as I get the time.
+Continued development of Tiingo Endpoints to create fuller integration with all endpoints.
+
+Many thanks to Rishi Singh for creating Tiingo. This labor of love of mine in building Google Sheets integration is built upon his labor of love in creating the service in the first place.
