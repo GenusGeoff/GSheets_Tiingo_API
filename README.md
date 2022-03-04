@@ -106,11 +106,15 @@ This function queries the Tiingo Fundamental Data Endpoint API. More information
 
 #### KNOWN ISSUES:
 
-Google Sheets does not have a built-in way to refresh API data pulls. This presents some minor inconvenience when dealing with Intraday quotes. However, I have built a janky workaround into the tiingo_refresh.gs file which creates the opt_Unused field present in brackets as "optional" in the documentation above. The easiest way to implement this workaround is to install the tiingo_refresh.gs file and then create a superfluous cell that you can simply insert a random value in or create a macro to accomplish the same.
+Google Sheets does not have a built-in way to refresh API data pulls. This presents some minor inconvenience when dealing with Intraday quotes. However, I have built a janky workaround into the tiingo_refresh.gs file which creates the opt_Unused field present in brackets as "optional" in the documentation above. The easiest way to implement this workaround is to install the tiingo_refresh.gs file and then create a superfluous cell that you can simply insert a random value in and then change the value to force a refresh.
 
 #### FUTURE DEVELOPMENT:
 
 I plan on creating the ability to pull several columns of data and output them at one time rather than only requesting a single factor at a time. It is also far more efficient to make a single query rather than a new query for each ticker requested, so that will also be on the TO DO List. Some of this functionality already exists in another example Google Sheets file from Tiingo. It is trivial to build in this functionality, and I plan on doing so as soon as I get the time.
 Continued development of Tiingo Endpoints to create fuller integration with all endpoints.
 
-Many thanks to Rishi Singh for creating Tiingo. This labor of love of mine in building Google Sheets integration is built upon his labor of love in creating the service in the first place.
+#### RECENT UPDATES:
+
+Added some code changes to make the EOD Endpoint API more data efficient thus reducing the packet size delivered to Google and speeding up the code.
+
+Many thanks to Rishi Singh for creating Tiingo. This labor of love of mine in building Google Sheets integration is built upon his labor of love in creating the service.
