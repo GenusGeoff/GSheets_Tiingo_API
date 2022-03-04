@@ -1,4 +1,4 @@
-// Copyright 2020, Geoffrey A. Pitman
+// Copyright 2020, 2022, Geoffrey A. Pitman
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ function dateToString(date) {
 
 function TIINGOEOD(authorization, ticker, factor, startDate, endDate, frequency) {
 
-  var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + dateToString(startDate) + '&endDate=' + dateToString(endDate) + '&resampleFreq=' + frequency + '&token=' + authorization;
+  var url = 'https://api.tiingo.com/tiingo/daily/' + ticker + '/prices?startDate=' + dateToString(startDate) + '&endDate=' + dateToString(endDate) + '&resampleFreq=' + frequency + '&columns=' + factor +  '&token=' + authorization;
 
   return retrieveData(url)[0][factor];
 }
@@ -66,14 +66,15 @@ function TIINGOEOD(authorization, ticker, factor, startDate, endDate, frequency)
 * @param {"tngoLast"} factor A field name from Tiingo API 
 *                            {date, open, high, low, close, volume, adjOpen, adjHigh, adjLow, adjClose, adjVolume, divCash, splitFactor}
 * @param {"True"} afterHours Request after market hours quotes {True or False}
+* @param {"True"} forceFill Request Tiingo to forceFill a quote {True or False}
 * @param {opt_Ununsed} opt_Unused A slot to insert a cell reference that you may update to force a data refresh
 * @returns A single data point from the Tiingo IEX API
 * @customfunction
 */
 
-function TIINGOIEX(authorization, ticker, factor, afterHours, opt_Unused) {
+function TIINGOIEX(authorization, ticker, factor, forceFill, afterHours, opt_Unused) {
 
-  var url = 'https://api.tiingo.com/iex/' + ticker + '?token=' + authorization + '&afterHours=' + afterHours;
+  var url = 'https://api.tiingo.com/iex/' + ticker + '?afterHours=' + afterHours + '&forceFill=' + forceFill + '&token=' + authorization;
 
   return retrieveData(url)[0][factor];
 }
@@ -101,7 +102,7 @@ function TIINGOFX(authorization, currencyPair, factor, opt_Unused) {
 
 /**
 *
-* Retrieves IntraDay Quotes from Tiingo API
+* Retrieves IntraDay Crypto Quotes from Tiingo API
 * For more information, please see https://api.tiingo.com/documentation/crypto
 *
 * @param {Tiingo_API_Key} authorization Tiingo API Key from https://www.tiingo.com/account/api/token
